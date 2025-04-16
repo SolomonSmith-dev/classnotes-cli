@@ -25,6 +25,7 @@ This project includes two CLI tools:
 
 ### 🔨 Manual Setup
 
+
 1. Clone the repository:
 
 ```bash
