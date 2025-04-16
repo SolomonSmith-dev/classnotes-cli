@@ -1,0 +1,56 @@
+#!/usr/bin/env python3
+import os
+import sys
+import subprocess
+from pathlib import Path
+
+def list_notes(subject_dir):
+    notes = sorted(subject_dir.glob("*.txt"))
+    if not notes:
+        print("📭 No notes found.")
+        return
+    for note in notes:
+        print(f"📝 {note.name}")
+
+def open_latest(subject_dir):
+    notes = sorted(subject_dir.glob("*.txt"))
+    if not notes:
+        print("📭 No notes found.")
+        return
+    subprocess.call(["nano", str(notes[-1])])
+
+def search_notes(subject_dir, keyword):
+    notes = sorted(subject_dir.glob("*.txt"))
+    if not notes:
+        print("📭 No notes found.")
+        return
+    for note in notes:
+        with open(note) as f:
+            lines = f.readlines()
+            if any(keyword.lower() in line.lower() for line in lines):
+                print(f"\n🔎 Found in {note.name}:\n")
+                for line in lines:
+                    if keyword.lower() in line.lower():
+                        print(f"   {line.strip()}")
+
+# === MAIN ===
+if len(sys.argv) < 2:
+    print("⚠️  Usage: classnotes <subject> [--latest | --search <word>]")
+    sys.exit(1)
+
+subject = sys.argv[1].lower()
+notes_dir = Path.home() / ".class_notes" / subject
+
+if not notes_dir.exists():
+    print(f"❌ No notes found for '{subject}'.")
+    sys.exit(1)
+
+if len(sys.argv) == 2:
+    list_notes(notes_dir)
+elif sys.argv[2] == "--latest":
+    open_latest(notes_dir)
+elif sys.argv[2] == "--search" and len(sys.argv) >= 4:
+    search_notes(notes_dir, sys.argv[3])
+else:
+    print("⚠️  Invalid command. Use --latest or --search <word>")
+

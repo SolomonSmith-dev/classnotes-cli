@@ -1,0 +1,30 @@
+#!/usr/bin/env python3
+import sys
+import os
+import subprocess
+from datetime import datetime
+
+# Check for subject
+if len(sys.argv) < 2:
+    print("⚠️  Usage: classnote <subject>")
+    sys.exit(1)
+
+subject = sys.argv[1].lower()
+
+# Build full path
+timestamp = datetime.now().strftime("%Y-%m-%d-%H-%M")
+notes_dir = os.path.expanduser(f"~/.class_notes/{subject}")
+os.makedirs(notes_dir, exist_ok=True)
+
+note_path = os.path.join(notes_dir, f"{timestamp}.txt")
+
+# Create the note file
+with open(note_path, "w") as f:
+    f.write(f"# Notes for {subject.capitalize()} — {timestamp}\n\n")
+
+# Open it in your terminal editor
+editor = os.environ.get("EDITOR", "nano")  # Change 'nano' to 'vim' or 'micro' if you prefer
+subprocess.call([editor, note_path])
+
+print(f"✅ Note saved at {note_path}")
+
