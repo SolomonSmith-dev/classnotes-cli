@@ -4,10 +4,11 @@ Take and manage class notes straight from your terminal — fast, organized, and
 
 This project includes two CLI tools:
 
-- `classnote`: Take a new note using your terminal editor
-- `classnotes`: List, open, and search notes by subject
+- `classnote`: Take a new note using your terminal editor  
+- `classnotes`: List, open, and search notes by subject  
 
-> 💡 Notes are saved under `~/.class_notes/<subject>/<timestamp>.txt`
+> 💡 Notes are saved under:  
+> `~/.class_notes/<subject>/<timestamp>.txt`
 
 ---
 
@@ -25,55 +26,94 @@ This project includes two CLI tools:
 
 ### 🔨 Manual Setup
 
-
-1. Clone the repository:
+**1. Clone the repository:**
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/classnotes-cli.git
+git clone https://github.com/SolomonSmith-dev/classnotes-cli.git
 cd classnotes-cli
+```
 
-2. Make the scripts executable:
+**2. Make the scripts executable:**
 
+```bash
 chmod +x classnote classnotes
+```
 
-3.Create a ~/bin folder if it doesn't exist and symlink the scripts:
+**3. Create a `~/bin` folder if it doesn't exist and symlink the scripts:**
+
+```bash
 mkdir -p ~/bin
 
 ln -s "$PWD/classnote" ~/bin/classnote
 ln -s "$PWD/classnotes" ~/bin/classnotes
+```
 
-4.Add ~/bin to your PATH (if it’s not already):
+**4. Add `~/bin` to your PATH (if it’s not already):**
 
-- For Zsh (macOS default):
+- **For Zsh (macOS default):**
 
+```bash
 echo 'export PATH="$HOME/bin:$PATH"' >> ~/.zshrc
 source ~/.zshrc
+```
 
-- For Bash:
+- **For Bash:**
+
+```bash
 echo 'export PATH="$HOME/bin:$PATH"' >> ~/.bashrc
 source ~/.bashrc
+```
 
-Optional One-Liner Setup (if setup.sh is added later)
-curl -s https://raw.githubusercontent.com/YOUR-USERNAME/classnotes-cli/main/setup.sh | bash
+---
 
-## Usage
+### 💡 Optional One-Liner Setup (if `setup.sh` is added later)
 
-Create a new note:
+```bash
+curl -s https://raw.githubusercontent.com/SolomonSmith-dev/classnotes-cli/main/setup.sh | bash
+```
+
+---
+
+## 🚀 Usage
+
+**Create a new note:**
+
+```bash
 classnote cse2130
-ex. Saves a file like:
-~/.class_notes/cse2130/2025-04-15-14-30.txt
+```
 
-List all notes for a class:
+_Example: Saves a file like:_  
+`~/.class_notes/cse2130/2025-04-15-14-30.txt`
+
+---
+
+**List all notes for a class:**
+
+```bash
 classnotes cse2130
+```
 
-Open the latest note:
+---
+
+**Open the latest note:**
+
+```bash
 classnotes cse2130 --latest
+```
 
-Search for a keyword:
+---
+
+**Search for a keyword:**
+
+```bash
 classnotes cse2130 --search binary
+```
 
-## File Structure
+---
 
+## 📁 File Structure
+
+```text
 ~/.class_notes/
 ├── math/
 │   ├── 2025-04-15-09-30.txt
@@ -83,37 +123,43 @@ classnotes cse2130 --search binary
 │   └── 2025-04-15-15-47.txt
 └── ssci/
     └── 2025-04-15-17-10.txt
-
-## Pro Tips
-
-Change your editor with:
-export EDITOR="nano"
-
-Back up your notes:
-tar -czf class_notes_backup.tar.gz ~/.class_notes
-
-## Future Features (Ideas)
-
---open <filename>: open any specific note
---summary: show the first line of each note
-Git/Nextcloud syncing
-Terminal dashboard or web frontend
-
-## License
-MIT — use it, share it, hack it, ship it.
-
-## Author
-Made with 💻 and ☕ by Solomon Smith
-
+```
 
 ---
 
-This is **THE version** you copy-paste directly into your `README.md`.
+## 💡 Pro Tips
 
-No code blocks inside code blocks.
-No partial formatting.
-No broken promises.
-You called it out, and you were 100% right. Appreciate the patience. 🙏
+**Change your default terminal editor (e.g., nano, vim, micro):**
 
-Let’s crush the next part — want to write the `setup.sh` script now?
+```bash
+export EDITOR="nano"
+```
+
+**Back up your notes manually:**
+
+```bash
+tar -czf class_notes_backup.tar.gz ~/.class_notes
+```
+
+---
+
+## 🔮 Future Features (Ideas)
+
+- `--open <filename>`: open any specific note  
+- `--summary`: show the first line of each note  
+- Git/Nextcloud syncing  
+- Terminal dashboard or web frontend  
+
+---
+
+## 📄 License
+
+MIT — use it, share it, hack it, ship it.
+
+---
+
+## 👨‍💻 Author
+
+Made with 💻 and ☕ by [Solomon Smith](https://github.com/SolomonSmith-dev)
+
 
